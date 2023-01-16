@@ -1,0 +1,27 @@
+[
+    {   "title": "testing ",
+        "content": "This tech blog will change the way to leanr new technology",
+        "tech_id": 1,
+        "user_id": 2
+    },
+    {
+        "title": "test2",
+        "content": "this is a good product",
+        "tech_id": 1,
+        "user_id": 2 
+    },
+
+    {
+        "title": "test3",
+        "content": "there's a lot to improve here is this app",
+        "tech_id": 1,
+        "user_id": 2 
+    },
+    {
+        "title": "test4",
+        "content": "i would give 4 start for this app",
+        "tech_id": 1,
+        "user_id": 2 
+    }
+
+]

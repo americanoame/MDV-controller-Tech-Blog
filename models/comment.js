@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class comment extends Model {}
+class Comment extends Model { }
 
 Comment.init(
   {
@@ -37,8 +37,8 @@ Comment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'comment',
   }
 );
 
-module.exports = comment;
+module.exports = Comment;
