@@ -2,25 +2,9 @@ const router = require('express').Router();
 const { Tech, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// const withAuth = (req, res, next) => {
-// // if the user is not logged in, redirect the user to
-// // the login page
-// // this is directly from the /gallery:id routes
-
-//   if (!req.session.loggedIn) {      // insted of put on the auth folder i can externalize
-//     res.redirect('/login');        // doing this way, it will become a function therefor 
-//   } else {                         // i will not need the auth folder
-
-// // if the user is logged in, execute the route fuction
-// // that will alow to view the dashboard
-// // we can call next if the user is authenticated    
-//     next()
-//   }
-// };
-
 // GET all galleries for homepage
 router.get("/", async (req, res) => {
-  const techs = await Tech.findAll({
+  const dbTechData = await Tech.findAll({
     include: [
       {
         model: User,
@@ -28,36 +12,31 @@ router.get("/", async (req, res) => {
       },
     ],
   });
-  res.render('homepage', { techs });
+
+  const techs = dbTechData.map((tech) =>
+    tech.get({ plain: true })
+  );
+  res.render('homepage', { techs, loggedIn: req.session.logged_in });
 })
 
-
-
-
-
-router.get('/project/:id', withAuth, async (req, res) => {
+router.get('/tech/:id', withAuth, async (req, res) => {
   try {
-    const dbGalleryData = await Project.findByPk(req.params.id, {
+    const dbTechData = await Tech.findByPk(req.params.id, {
       include: [
         {
-          model: Comment,
+          model: User,
           attributes: ["comment", "data", "user id"],
         },
       ],
     });
-
-
-    // try to get the user data here
-
-
-
-    const galleries = dbGalleryData.map((gallery) =>
-      gallery.get({ plain: true })
+    const tech = dbTechData.get((tech) =>
+      tech.get({ plain: true })
     );
-
+    // res.render("homepage", { dbTechData });
+    // try to get the user data here
     res.render('homepage', {
-      galleries,
-      loggedIn: req.session.loggedIn,
+      tech,
+      loggedIn: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
@@ -65,49 +44,80 @@ router.get('/project/:id', withAuth, async (req, res) => {
   }
 });
 
+// i have to do this part to be able to open the l
 
+router.get('/dashboard', withAuth, async (req, res) => {
 
+  res.render('dashboard', {
 
+    logged_in: req.session.logged_in,
+  });
+});
 
-router.get('/gallery/:id', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const dbTechData = await Tech.findByPk(req.params.id, {
+      include: [
+        {
+          model: Tech,
+          attributes: ["data", "user id"],
+        },
+      ],
+    });
+    const user = dbTechData.get({ plain: true })
 
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-
-    try {
-      const dbGalleryData = await Gallery.findByPk(req.params.id, {
-        include: [
-          {
-            model: Painting,
-            attributes: [
-              'id',
-              'title',
-              'artist',
-              'exhibition_date',
-              'filename',
-              'description',
-            ],
-          },
-        ],
-      });
-      const gallery = dbGalleryData.get({ plain: true });
-      res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+    res.render('homepage', {
+      ...user,
+      loggedIn: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-// GET one painting
-// TODO: Replace the logic below with the custom middleware
+// it takes the user to the page when they login
+
+router.get('/tech/edit/:id', withAuth, async (req, res) => {
+
+  // find user by id
+  try {
+    const dbTechData = await Tech.findOne({
+      where: {
+        id: req.params.id
+      },
+
+      attributes: ["comment", "data", "user id"],
+      include: [
+        {
+          model: Comment,
+          attributes: ["comment", "data", "user id"],
+        }
+      ],
+    })
+
+    const tech = dbTechData.get((tech) => {
+      tech.get({ plain: true });
+    });
+
+    res.render("dashboard", {
+      tech,
+      loggedIn: req.session.logged_in,
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
+});
+
 router.get('/painting/:id', withAuth, async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
+
   if (!req.session.loggedIn) {
     res.redirect('/login');
   } else {
-    // If the user is logged in, allow them to view the painting
+
     try {
       const dbPaintingData = await Painting.findByPk(req.params.id);
 
@@ -122,6 +132,14 @@ router.get('/painting/:id', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+  res.render('login');
+});
+
+router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -129,5 +147,37 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
+
+  router.get('/lgout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.redirect('/');
+        return;
+      });
+    } else {
+      res.status(404).end;
+    }
+  });
+
+});
+
+
+router.get('/new', (req, res) => {
+  
+
+    res.render('new-post');
+});
+
+
+
+
 
 module.exports = router;

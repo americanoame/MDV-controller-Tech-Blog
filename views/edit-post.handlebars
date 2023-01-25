@@ -1,0 +1,51 @@
+
+
+<div class="edit">
+        <h2 class="title">Edit post</h2>
+
+
+        <form class="form-horizontal m-lg-4" id="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label"> value={{Post.post_title}}</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="editPost">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="postcode" class="col-sm-2 control-label">{{post.post_Content}}</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="editContent">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="edit" class="btn btn-outline-primary mt-3" id="editId{{post.id}}">save</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/editPost.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+{{!-- <section class="container">
+  <h3 class="tech-name">{{gallery.name}}</h3>
+  <h4>Opening Hour: {{format_time tech.starting_date}}</h4>
+  <h4>Closing Hour: {{format_time tech.ending_date}}</h4>
+  <section class="flex-row justify-center">
+    {{#each tech.paintings as |painting|}}
+    {{> painting-details}}
+    {{/each}}
+  </section>
+</section> --}}
