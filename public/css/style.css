@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap');
 
 .newPostForm {
-    /* height: 100vh; */
     max-width:  100%;
-    background-color: rgb(123, 119, 119);
-    display: block;
+    background-color: royalblue;
     justify-content: center;
-    margin-top: 5rem;
-    /* margin: 0 auto; */
-    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 20px;
+    /* margin-left: 15rem; */
+    
 }
 
 #techContent {
@@ -34,5 +34,25 @@
     cursor: pointer;
 
 }
+
+.guide-line {
+    color: royalblue; 
+    background-color: yellow;
+    padding: 0.7rem;
+    border: none;
+    text-align: center;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+        rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    cursor: pointer;
+
+}
+
+.blogs-created-by {
+    color: royalblue;
+    font-weight: 600;
+}
+
+
+
 
 
