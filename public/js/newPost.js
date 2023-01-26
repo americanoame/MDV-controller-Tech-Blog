@@ -4,8 +4,8 @@ const newPostHandler = async (event) => {
     const title = document.querySelector('#techTitle').value.trim();
     const content = document.querySelector('#techContent').value.trim();
 
-    if (email && password) {
-        const response = await fetch('/api/users/projects', {
+    if (title && content) {
+        const response = await fetch('/api/projects', {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: { 'Content-Type': 'application/json' },

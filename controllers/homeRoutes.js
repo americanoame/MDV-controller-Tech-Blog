@@ -46,28 +46,36 @@ router.get('/tech/:id', withAuth, async (req, res) => {
 
 // i have to do this part to be able to open the l
 
-router.get('/dashboard', withAuth, async (req, res) => {
+// router.get('/dashboard', withAuth, async (req, res) => {
 
-  res.render('dashboard', {
+//   res.render('dashboard', {
 
-    logged_in: req.session.logged_in,
-  });
-});
+//     logged_in: req.session.logged_in,
+//   });
+// });
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const dbTechData = await Tech.findByPk(req.params.id, {
-      include: [
-        {
-          model: Tech,
-          attributes: ["data", "user id"],
-        },
-      ],
+    const dbTechData = await Tech.findAll({
+      //findAll Tech where user_id: req.session.user_id
+      where: {
+        user_id: req.session.user_id
+      }
     });
-    const user = dbTechData.get({ plain: true })
+    // let blogs;
+    // if (dbTechData.length > 1) {
+    // const blogs = dbTechData.get({ plain: true });
+    const techs = dbTechData.map((tech) => {
+      tech.get({ plain: true });
+    });
+    // const techs = dbTechData;
+    // } else {
+    //   blogs = dbTechData.get({ plain: true });
+    // }
+    console.log(techs);
 
-    res.render('homepage', {
-      ...user,
+    res.render('dashboard', {
+      techs,
       loggedIn: req.session.logged_in,
     });
   } catch (err) {
@@ -171,9 +179,9 @@ router.get('/signup', (req, res) => {
 
 
 router.get('/new', (req, res) => {
-  
 
-    res.render('new-post');
+
+  res.render('new-post');
 });
 
 

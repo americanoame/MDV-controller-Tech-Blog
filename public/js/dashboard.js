@@ -20,11 +20,11 @@ const dashboardFormHandler = async (event) => {
             }
 
         } else if (dashboard === "edit") {
-           document.location.raplace(`/tech/edit/${id}`);
+            document.location.raplace(`/tech/edit/${id}`);
         }
     }
 }
 
-document
-    .querySelector(".tech")
-    .addEventListener('submit', dashboardFormHandler);
+// document
+//     .querySelector(".tech")
+//     .addEventListener('submit', dashboardFormHandler);
