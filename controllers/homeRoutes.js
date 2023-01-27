@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
   const techs = dbTechData.map((tech) =>
     tech.get({ plain: true })
   );
+
   res.render('homepage', { techs, loggedIn: req.session.logged_in });
 })
 
@@ -62,12 +63,11 @@ router.get('/dashboard', withAuth, async (req, res) => {
         user_id: req.session.user_id
       }
     });
+    console.log(dbTechData)
     // let blogs;
     // if (dbTechData.length > 1) {
     // const blogs = dbTechData.get({ plain: true });
-    const techs = dbTechData.map((tech) => {
-      tech.get({ plain: true });
-    });
+    const techs = dbTechData.map((tech) => tech.get({ plain: true }));
     // const techs = dbTechData;
     // } else {
     //   blogs = dbTechData.get({ plain: true });
@@ -147,14 +147,6 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('login');
-});
 
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
@@ -163,18 +155,16 @@ router.get('/signup', (req, res) => {
   }
 
   res.render('signup');
-
-  router.get('/lgout', (req, res) => {
-    if (req.session.loggedIn) {
-      req.session.destroy(() => {
-        res.redirect('/');
-        return;
-      });
-    } else {
-      res.status(404).end;
-    }
-  });
-
+});
+router.get('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.redirect('/');
+      return;
+    });
+  } else {
+    res.status(404).end;
+  }
 });
 
 

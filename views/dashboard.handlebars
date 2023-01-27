@@ -6,18 +6,18 @@
   <h3>New Blogs:</h3>
   {{#each techs as |tech|}}
   <div class='card'>
-    <div class='card-header'>
+    <div class='card-body'>
       <div class='row'>
         <div class='col-12 col-md-7'>
           {{!-- <p>{{console.log(blog)}}</p> --}}
           <h5><a href='/tech/{{tech.id}}'>{{techs.title}}</a></h5>
         </div>
         <div class='d-flex justify-content-end align-items-center col-12 col-md-5'>
-          <p class='m-0'>
+          <p class='m-2'>
             {{format_date tech.date_created}}
 
-            <button class='btn btn btn-primary' data-id='{{tech.id}}' data-function='edit'>EDIT</button>
-            <button class='btn btn btn-primary' data-id='{{tech.id}}' data-function='delete'>DELETE</button>
+            <button class='btn btn btn-danger' data-id='{{tech.id}}' data-function='edit'>EDIT</button>
+            <button class='btn btn btn-danger' data-id='{{tech.id}}' data-function='delete'>DELETE</button>
           </p>
         </div>
       </div>
