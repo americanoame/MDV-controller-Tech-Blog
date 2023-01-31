@@ -2,9 +2,11 @@
 
  ## 📖 Description
 
- #### This is the Weather Dashboard. Here the users can check for the weather.
+ #### This is the MDV-controller-Tech-Blog. Here the users  will be able to create a blog, and comment
+ ####  on other's post. (more update commig up for this application soon)
  
- ![Screenshot 2023-01-29 at 11 34 56 PM](https://user-images.githubusercontent.com/77306236/215388650-3eab7e1a-91d0-4ab7-9d1d-255cc17a548c.png)
+ ![Screenshot 2023-01-30 at 9 36 00 PM](https://user-images.githubusercontent.com/77306236/215648499-daba5d4b-3532-4020-ac36-f4a933e725d0.png)
+
 
   ## Table of Contents
 * [Installation](#Installation)
@@ -21,8 +23,7 @@
 ###### MYSQL, NODE.JS, JAVASCRIPT
 
 ## Usage
-#### Check the deployed aplication at:  https://americanoame.github.io/Weather-Dashboard/
-#### Or by visiting: https://github.com/americanoame/Weather-Dashboard
+#### Check the deployed aplication at:  
 
 
 ## ⚖️ License
