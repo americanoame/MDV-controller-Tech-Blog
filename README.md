@@ -22,7 +22,7 @@
 #### Technologia used
 ###### MYSQL, NODE.JS, JAVASCRIPT
 
-## Usage
+### Usage
 #### Check the deployed aplication at:  
 
 
