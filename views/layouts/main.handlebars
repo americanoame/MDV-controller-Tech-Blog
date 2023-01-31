@@ -18,12 +18,12 @@
       <div class="container-fuid">
 
         <ul class="nav nav-pills">
+          
 
           <li class="nav-item">
             <a href="/dashboard" class="nav-link">Dashboard</a>
             {{#if loggedIn}}
           </li>
-
           <li class="nav-item">
             <a href="/logout" id="logoutBtn" class="nav-link">Logout</a>
             {{else}}
@@ -38,11 +38,8 @@
           <li class="nav-item">
             <a href="/signup" class="nav-link">SignUp</a>
           </li>
-
           {{/if}}
-
         </ul>
-
       </div>
     </nav>
   </div>
@@ -52,34 +49,6 @@
   <script src="/js/logout.js"></script>
   {{/if}}
 
-
-
-
-
-  {{!-- <div class="row">
-    <nav class='navbar navbar-light bg-light p-4 col-12'>
-      <div class='container-fluid'>
-        <ul class='nav nav-pills'>
-          <li class='nav-item'>
-            <a class='nav-link' href='/'>Home</a>
-          </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='/dashboard'>Dashboard</a>
-          </li>
-          <li class='nav-item'>
-            {{#if logged_in}}
-            <a class='nav-link' href='/logout'>Logout</a>
-            {{else}}
-            <a class='nav-link' href='/login'>Login</a>
-          </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='/signup'>Signup</a>
-            {{/if}}
-          </li>
-        </ul>
-      </div>
-
-      <script src="/js/logout.js"></script> --}}
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
