@@ -1,14 +1,15 @@
 const editPostHandler = async (event) => {
     event.preventDefault();
 
-    const edit = document.querySelector('#editPost').value.trim();
-    const content = document.querySelector('#editContent').value.trim();
-    const editId = document.querySelector('#editId').value
+    const edit = $('#editPost').val().trim();
+    const content = $('#editContent').val().trim();
+    const editId = $('#editId').val();
+
 
     if (title && content) {
-        const response = await fetch(`/api/users/${editId}`, {
+        const response = await fetch(`/api/tech/${editId}`, {
             method: 'PUT',
-            body: JSON.stringify({ edit, content }),
+            body: JSON.stringify({ title, content }),
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -22,5 +23,5 @@ const editPostHandler = async (event) => {
 };
 
 document
-    .querySelector('.form-horizontal')
+    .querySelector('.tech_id')
     .addEventListener('click', editPostHandler);

@@ -24,7 +24,6 @@ const bntHandler = async (event) => {
     }
 }
 
-
 document
     .querySelector(".tech-list")
     .addEventListener('click', bntHandler);
