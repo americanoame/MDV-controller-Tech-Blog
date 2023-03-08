@@ -1,15 +1,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap');
 
-.newPostForm {
+.main-handle-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.nav-link {
+  color: yellow;
+  font-size: 1.5rem;
+  
+}
+
+.btn-primary {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  background-color: yellow;
+  color: blue;
+  padding: 0.7rem;
+  border: none;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  cursor: pointer;
+
+}
+
+.guide-line {
+  color: royalblue; 
+  background-color: yellow;
+  padding: 0.7rem;
+  border: none;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  cursor: pointer;
+
+}
+
+ .btn-danger {
+    border-radius: 70px;
+    background-color: rgb(244, 174, 10);
+    color: royalblue;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+        rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    cursor: pointer;
+}
+
+
+.homepage-text {
+  gap: 5px;
+}
+
+
+/* .btn-primary {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  background-color: yellow;
+  color: blue;
+  padding: 0.7rem;
+  border: none;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+  cursor: pointer;
+
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .newPostForm {
     max-width:  100%;
     background-color: royalblue;
     justify-content: center;
     margin-top: 2rem;
     padding: 1rem;
     border-radius: 20px;
-    /* margin-left: 15rem; */
+    /* margin-left: 15rem; 
     
-}
+} 
 
 #techContent {
     padding: 5rem;
@@ -52,7 +132,7 @@
     font-weight: 600;
 }
 
-.btn-danger {
+/* .btn-danger {
     border-radius: 70px;
     background-color: rgb(244, 174, 10);
     color: royalblue;
@@ -60,7 +140,7 @@
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
         rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
     cursor: pointer;
-}
+} */
 
 .main-handle-container {
   display: flex;
