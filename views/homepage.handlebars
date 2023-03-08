@@ -1,12 +1,33 @@
-<div  class="container p-5 d-grid gap-4 ">
+
+<div class='container p-4 d-grid gap-4'>
     <div class='d-flex justify-content-center'>
         <p class="guide-line">"Remember to keep comments respectful<br>and
             to follow our Community Guidelines"
         </p>
     </div>
     {{#each techs as |tech|}}
-    {{> tech-details}}
+    <div class='card'>
+        <div class='card-header'>
+            <div class='row'>
+                <div class='col-12 col-md-7'>
+                    <h4 class='card-title'>
+                        {{tech.title}}
+                    </h4>
+                </div>
+                <div class='col-12 col-md-5 d-flex justify-content-end '>
+                    <p>Posted by
+                        {{tech.user.name}}
+                        on
+                        {{format_date tech.date_created}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class='card-body'>
+            <p class='card-text'>
+                {{tech.content}}
+            </p>
+        </div>
+    </div>
     {{/each}}
-
 </div>
-
