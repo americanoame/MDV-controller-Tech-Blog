@@ -12,8 +12,8 @@
   
 }
 
-.btn-primary {
-  font-size: 1.5rem;
+ .btn-primary {
+  font-size: 1.5rem; 
   margin-left: 1rem;
   background-color: yellow;
   color: blue;
@@ -24,7 +24,7 @@
       rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
   cursor: pointer;
 
-}
+} 
 
 .guide-line {
   color: royalblue; 
@@ -49,9 +49,29 @@
 }
 
 
-.homepage-text {
-  gap: 5px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* .btn-primary {
@@ -67,18 +87,6 @@
   cursor: pointer;
 
 } */
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* .newPostForm {
     max-width:  100%;
@@ -142,11 +150,7 @@
     cursor: pointer;
 } */
 
-.main-handle-container {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
+
 
 
 
