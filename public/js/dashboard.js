@@ -26,5 +26,5 @@ const bntHandler = async (event) => {
 
 
 document
-    .querySelector("tech-list")
+    .querySelector(".tech-list")
     .addEventListener('click', bntHandler);
