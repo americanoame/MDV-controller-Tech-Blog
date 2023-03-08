@@ -25,6 +25,6 @@ const bntHandler = async (event) => {
 }
 
 
-// document
-//     .querySelector(".tech")
-//     .addEventListener('submit', dashboardFormHandler);
+document
+    .querySelector("tech-list")
+    .addEventListener('click', bntHandler);
