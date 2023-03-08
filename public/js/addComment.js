@@ -17,7 +17,7 @@ const addNewHandler = async (event) => {
                 document.location.reload();
 
             } else {
-                alert('Failed to coment!');
+                alert('Failed to comment!');
             }
         }
         

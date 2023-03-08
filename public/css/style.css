@@ -54,7 +54,7 @@
 
 .btn-danger {
     border-radius: 70px;
-    background-color: yellow;
+    background-color: rgb(244, 174, 10);
     color: royalblue;
     border: none;
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
@@ -62,9 +62,66 @@
     cursor: pointer;
 }
 
+.main-handle-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+/* .container-md {
+    width: 50%;
+    height: 30rem;
+    padding: 10px;
+    margin-top: 20rem;
+    background: rgb(238, 211, 34);
+}
+
+
+form {
+     display: flex;
+    flex-direction: column;
+    gap: 1.4rem; 
+  } 
+  
+  form div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  input {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid gray;
+    font-size: 1.1rem;
+  }
+
+  .btn-block {
+    margin-left: 3px;
+    background: olivedrab;
+    border: none;
+    
+  }
+
+  .btn-block:hover {
+    background-color: rgb(99, 128, 41);
+    transform: scale(1.2);
+    transition: .5s;
+  }
+
+
+  span a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  
 
 
 
 
 
 
+ */

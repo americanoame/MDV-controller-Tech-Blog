@@ -24,7 +24,6 @@
 ### Usage
 #### Check the deployed aplication at: https://secret-thicket-88512.herokuapp.com/dashboard 
 
-
 ## ⚖️ License
 #### N/A
 
