@@ -1,29 +1,29 @@
-const dashboardFormHandler = async (event) => {
-    event.preventDefault();
+const bntHandler = async (event) => {
 
-    if (dashboard === "data-id") {
-        const id = dashboard.getAttribute('data-id');
-        console.log("data-id", id);
+    if (event.target.dataset.id) {
+        const { id, function: btnFunction } = event.target.dataset;
+        console.log('data-id: ', id);
+        console.log('data-function: ', btnFunction);
 
-        if (dashboard === "delete") {
-            const erase = confirm("would like to delete your post")
-            if (erase) {
+        if (btnFunction === 'delete') {
+            const delBtn = confirm("Do you want to delete the blog?");
+            if (delBtn) {
                 const response = await fetch(`/api/tech/${id}`, {
-                    method: "DELETE",
+                    method: 'DELETE',
                 });
 
                 if (response.ok) {
-                    document.location.replace('/dashbord');
+                    document.location.replace('/dashboard');
                 } else {
-                    alert("Failed to sign up.");
+                    alert('Failed to delete blog');
                 }
             }
-
-        } else if (dashboard === "edit") {
-            document.location.raplace(`/tech/edit/${id}`);
+        } else if (btnFunction === 'edit') {
+            document.location.replace(`/tech/edit/${id}`);
         }
     }
 }
+
 
 // document
 //     .querySelector(".tech")
