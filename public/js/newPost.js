@@ -5,7 +5,7 @@ const newPostHandler = async (event) => {
     const content = document.querySelector('#techContent').value.trim();
 
     if (title && content) {
-        const response = await fetch('/api/projects', {
+        const response = await fetch('/api/tech', {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: { 'Content-Type': 'application/json' },
