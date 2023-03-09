@@ -4,26 +4,26 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newmdv = await Tech.create({
+    const newTech = await Tech.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newmdv);
+    res.status(200).json(newTech);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-
 router.post('/comment', withAuth, async (req, res) => {
   try {
-    const newmdv = await Tech.create({
+    const newComment = await Comment.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newmdv);
+    console.log("newComment: ",newComment);
+    res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -31,16 +31,20 @@ router.post('/comment', withAuth, async (req, res) => {
 
 // tittle content where
 
-router.put('/', withAuth, async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
-    const newmdv = await Tech.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const techData = await Tech.update({
+      title: req.body.title,
+      content: req.body.content,
     });
 
-    res.status(200).json(newmdv);
+    where: {
+      id: req.params.id
+    }
+
+    res.status(200).json(techData);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 

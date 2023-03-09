@@ -11,36 +11,58 @@ router.get("/", async (req, res) => {
         attributes: ["name"],
       },
     ],
+    order: [
+      ['date_created', 'DESC']
+    ]
   });
 
   const techs = dbTechData.map((tech) =>
     tech.get({ plain: true })
   );
 
-  res.render('homepage', { techs, loggedIn: req.session.logged_in });
+  res.render('homepage', {
+    techs,
+    loggedIn: req.session.logged_in
+  });
+
 })
 
-router.get('/tech/:id', withAuth, async (req, res) => {
+router.get('/tech/:id', async (req, res) => {
   try {
-    const dbTechData = await Tech.findByPk(req.params.id, {
+    const dbTechData = await Tech.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: ['id', 'title', 'content', 'date_created'],
       include: [
         {
+          model: Comment,
+          attributes: ['id','comment', 'date_created', 'blog_id', 'user_id'],
+          include: {
+            model: User,
+            attributes:['name']
+          }
+        },
+        {
           model: User,
-          attributes: ["comment", "data", "user id"],
+          attributes: ['name'],
         },
       ],
+      order: [
+        [{model: Comment}, 'date_created', 'DESC'],
+      ]
     });
-    const tech = dbTechData.get((tech) =>
-      tech.get({ plain: true })
-    );
-    // res.render("homepage", { dbTechData });
-    // try to get the user data here
-    res.render('homepage', {
-      tech,
-      loggedIn: req.session.logged_in,
+
+    const tech = dbTechData.get({ plain: true });
+    console.log("tech", tech);
+
+
+    res.render('tech-details', {
+      ...blog,
+      logged_in: req.session.logged_in
     });
+
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
