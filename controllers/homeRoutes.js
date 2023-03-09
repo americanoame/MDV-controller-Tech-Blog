@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Tech, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
+
 router.get("/", async (req, res) => {
   const dbTechData = await Tech.findAll({
     include: [
@@ -117,11 +117,11 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
         id: req.params.id
       },
 
-      attributes: ["comment", "data", "user id"],
+      attributes: ["title", "content", "date_created"],
       include: [
         {
           model: Comment,
-          attributes: ["comment", "data", "user id"],
+          attributes: ["title", "content", "user_id"],
         }
       ],
     })
@@ -130,7 +130,7 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
       tech.get({ plain: true });
     });
 
-    res.render("dashboard", {
+    res.render("edit-post", {
       tech,
       loggedIn: req.session.logged_in,
     });
