@@ -77,33 +77,31 @@ router.get('/tech/:id', async (req, res) => {
 //   });
 // });
 
-
-// retrieving the user data and associated blogs from the database in a single query
-
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const dbTechData = await Tech.findAll({
-      //findAll Tech where user_id: req.session.user_id
-      attributes: { exclude: ['password'] },
-      include: [{ model: Tech }],
-      order: [
-        [{model: tech}, 'date_created', 'DESC'],
-      ]
+      
+      where: {
+        user_id: req.session.user_id
+      }
     });
     console.log(dbTechData)
 
-    const tech = dbTechData.get({ plain: true });
     
-    console.log(tech);
+    const techs = dbTechData.map((tech) => tech.get({ plain: true }));
+    
+    console.log(techs);
 
     res.render('dashboard', {
-      ...tech,
-      loggedIn: req.session.logged_in
+      techs,
+      loggedIn: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
+
+
 });
 
 // it takes the user to the page when they login
@@ -115,7 +113,7 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
     const tech = dbTechData.get({ plain: true });
     console.log("tech", tech)
 
-    res.render("edit_id", {
+    res.render("edit-post", {
       ...tech,
       loggedIn: req.session.logged_in,
     });
@@ -147,7 +145,7 @@ router.get('/login', (req, res) => {
 
 
 router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/dashboard');
     return;
   }
@@ -155,7 +153,7 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 router.get('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.redirect('/');
       return;

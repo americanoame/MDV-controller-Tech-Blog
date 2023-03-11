@@ -1,9 +1,12 @@
 <div class="container p-2 d-grid">
+    <div class='d-flex justify-content-center'>
+    <h2 class="blogs-created-by">Update your Post</h2>
+  </div>
     <form class="edit_tech">
         <div class="mb-3 m-2">
             <label for="techTitle" class="form-label">Title</label>
             <input type="text" class="form-control" id="editPost" placeholder="Title" value="{{title}}"/>
-            <input type="hidden" id="edit_id" value="{{tech.id}}">
+            {{!-- <input type="hidden" id="edit_id" value="{{tech.id}}"> --}}
         </div>
         <div class="mb-3 m-2">
             <label for="content" class="form-label">Content</label>
