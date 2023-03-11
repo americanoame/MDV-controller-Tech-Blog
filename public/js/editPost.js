@@ -3,7 +3,7 @@ const editPostHandler = async (event) => {
 
     const title = document.querySelector('#editPost').value.trim();
     const content = document.querySelector('#editContent').value.trim();
-    const edit_id = document.getElementById('#edit_id').value
+    const edit_id = document.getElementById('#edit_id')
 
     if (title && content) {
         const response = await fetch(`/api/tech/${edit_id}`, {
