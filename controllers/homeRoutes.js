@@ -37,7 +37,7 @@ router.get('/tech/:id', async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: ['id','comment', 'date_created', 'blog_id', 'user_id'],
+          attributes: ['id','comment', 'date_created', 'tech_id', 'user_id'],
           include: {
             model: User,
             attributes:['name']
@@ -77,28 +77,28 @@ router.get('/tech/:id', async (req, res) => {
 //   });
 // });
 
+
+// retrieving the user data and associated blogs from the database in a single query
+
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const dbTechData = await Tech.findAll({
       //findAll Tech where user_id: req.session.user_id
-      where: {
-        user_id: req.session.user_id
-      }
+      attributes: { exclude: ['password'] },
+      include: [{ model: Tech }],
+      order: [
+        [{model: tech}, 'date_created', 'DESC'],
+      ]
     });
     console.log(dbTechData)
-    // let blogs;
-    // if (dbTechData.length > 1) {
-    // const blogs = dbTechData.get({ plain: true });
-    const techs = dbTechData.map((tech) => tech.get({ plain: true }));
-    // const techs = dbTechData;
-    // } else {
-    //   blogs = dbTechData.get({ plain: true });
-    // }
-    console.log(techs);
+
+    const tech = dbTechData.get({ plain: true });
+    
+    console.log(tech);
 
     res.render('dashboard', {
-      techs,
-      loggedIn: req.session.logged_in,
+      ...tech,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
@@ -110,28 +110,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
 router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
-  // find user by id
   try {
-    const dbTechData = await Tech.findOne({
-      where: {
-        id: req.params.id
-      },
+    const dbTechData = await Tech.findByPk(req.params.id);
+    const tech = dbTechData.get({ plain: true });
+    console.log("tech", tech)
 
-      attributes: ["title", "content", "date_created"],
-      include: [
-        {
-          model: Comment,
-          attributes: ["title", "content", "user_id"],
-        }
-      ],
-    })
-
-    const tech = dbTechData.get((tech) => {
-      tech.get({ plain: true });
-    });
-
-    res.render("edit-post", {
-      tech,
+    res.render("edit_id", {
+      ...tech,
       loggedIn: req.session.logged_in,
     });
 
@@ -142,24 +127,15 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
 });
 
-router.get('/painting/:id', withAuth, async (req, res) => {
 
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
 
-    try {
-      const dbPaintingData = await Painting.findByPk(req.params.id);
-
-      const painting = dbPaintingData.get({ plain: true });
-
-      res.render('painting', { painting, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  }
+router.get('/tech', withAuth, async (req, res) => {
+  res.render('tech', {
+    logged_in: req.session.logged_in
+  });
 });
+
+
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
