@@ -27,45 +27,71 @@ router.get("/", async (req, res) => {
 
 })
 
-router.get('/tech/:id', async (req, res) => {
+
+
+
+
+router.put('/:id', withAuth, async (req, res) => {
   try {
-    const dbTechData = await Tech.findOne({
-      where: {
-        id: req.params.id
+    const techData = await Tech.update (
+      {
+        title: req.body.title,
+        content: req.body.content,
       },
-      attributes: ['id', 'title', 'content', 'date_created'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id','comment', 'date_created', 'tech_id', 'user_id'],
-          include: {
-            model: User,
-            attributes:['name']
-          }
+      {
+        where: {
+          id: req.params.id,
         },
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-      order: [
-        [{model: Comment}, 'date_created', 'DESC'],
-      ]
-    });
-
-    const tech = dbTechData.get({ plain: true });
-    console.log("tech", tech);
-
-
-    res.render('tech-details', {
-      ...blog,
-      logged_in: req.session.logged_in
-    });
+      }
+    );
+    res.status(200).json(techData);
 
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
+
+
+// router.get('/tech/:id', async (req, res) => {
+//   try {
+//     const dbTechData = await Tech.findOne({
+//       where: {
+//         id: req.params.id
+//       },
+//       attributes: ['id', 'title', 'content', 'date_created'],
+//       include: [
+//         {
+//           model: Comment,
+//           attributes: ['id','comment', 'date_created', 'tech_id', 'user_id'],
+//           include: {
+//             model: User,
+//             attributes:['name']
+//           }
+//         },
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//       ],
+//       order: [
+//         [{model: Comment}, 'date_created', 'DESC'],
+//       ]
+//     });
+
+//     const tech = dbTechData.get({ plain: true });
+//     console.log("tech", tech);
+
+
+//     res.render('tech-details', {
+//       ...blog,
+//       logged_in: req.session.logged_in
+//     });
+
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // i have to do this part to be able to open the l
 
