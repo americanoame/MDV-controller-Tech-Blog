@@ -22,7 +22,7 @@ router.post('/comment', withAuth, async (req, res) => {
       user_id: req.session.user_id,
     });
 
-    console.log("newComment: ",newComment);
+    console.log("newComment: ", newComment);
     res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
@@ -33,13 +33,22 @@ router.post('/comment', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const techData = await Tech.update({
-      title: req.body.title,
-      content: req.body.content,
-    });
+    const techData = await Tech.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
 
-    where: {
-      id: req.params.id
+        where: {
+          id: req.params.id
+        },
+      }
+    )
+
+    if (!techData) {
+      res.status(404).json({ message: 'No blog found with this id!' });
+      return;
     }
 
     res.status(200).json(techData);
