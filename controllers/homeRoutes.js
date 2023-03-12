@@ -70,17 +70,34 @@ router.get('/tech/:id', async (req, res) => {
 
 // i have to do this part to be able to open the l
 
-router.get('/dashboard', withAuth, async (req, res) => {
+// router.get('/dashboard', withAuth, async (req, res) => {
 
-  res.render('dashboard', {
+//   const dbTechData = await Tech.findAll({
+//     include: [
+//       {
+//         model: User,
+//         attributes: ["name"],
+//       },
+//     ],
+//     order: [
+//       ['date_created', 'DESC']
+//     ]
+//   });
 
-    logged_in: req.session.logged_in,
-  });
-});
+//   const techs = dbTechData.map((tech) =>
+//     tech.get({ plain: true })
+//   );
+
+//   res.render('dashboard', {
+//      techs,
+//     logged_in: req.session.logged_in,
+//   });
+// });
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const dbTechData = await Tech.findAll({
+      
       
       where: {
         user_id: req.session.user_id

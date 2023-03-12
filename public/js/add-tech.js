@@ -1,11 +1,11 @@
 const newBlgHandler = async (event) => {
     event.preventDefault();
   
-    const title = document.querySelector('#blog-title').value.trim();
-    const content = document.querySelector('#content').value.trim();
+    const title = document.querySelector('tech-title').value.trim();
+    const content = document.querySelector('content').value.trim();
   
     if (title && content) {
-      const response = await fetch(`/api/blog`, {
+      const response = await fetch(`/api/tech`, {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: {
@@ -22,5 +22,5 @@ const newBlgHandler = async (event) => {
   };
 
   document
-  .querySelector('.new-blog-form')
+  .querySelector('.new-tech-form')
   .addEventListener('submit', newBlgHandler);
