@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { Tech, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-
 router.get("/", async (req, res) => {
   const dbTechData = await Tech.findAll({
     include: [
@@ -26,7 +25,6 @@ router.get("/", async (req, res) => {
   });
 
 })
-
 
 router.get('/tech/:id', async (req, res) => {
   try {
@@ -58,9 +56,9 @@ router.get('/tech/:id', async (req, res) => {
     console.log("tech", tech);
 
 
-    res.render('tech-details', {
+    res.render('comment', {
       ...tech,
-      logged_in: req.session.logged_in
+      loggedIn: req.session.logged_in
     });
 
   } catch (err) {
@@ -68,13 +66,9 @@ router.get('/tech/:id', async (req, res) => {
   }
 });
 
-
-
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const dbTechData = await Tech.findAll({
-      
-      
       
       where: {
         user_id: req.session.user_id
@@ -84,18 +78,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     
     const techs = dbTechData.map((tech) => tech.get({ plain: true }));
-    
     console.log(techs);
-
     res.render('dashboard', {
       techs,
       loggedIn: req.session.logged_in,
+  
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-
 
 });
 
@@ -120,15 +112,11 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
 });
 
-
-
 router.get('/tech', withAuth, async (req, res) => {
   res.render('tech', {
     logged_in: req.session.logged_in
   });
 });
-
-
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
@@ -137,7 +125,6 @@ router.get('/login', (req, res) => {
   }
   res.render('login');
 });
-
 
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
