@@ -38,7 +38,7 @@ router.get('/tech/:id', async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: ['id','comment', 'date_created', 'tech_id', 'user_id'],
+          attributes: ['id', 'content', 'date_created', 'tech_id', 'user_id'],
           include: {
             model: User,
             attributes:['name']
@@ -59,7 +59,7 @@ router.get('/tech/:id', async (req, res) => {
 
 
     res.render('tech-details', {
-      ...blog,
+      ...tech,
       logged_in: req.session.logged_in
     });
 

@@ -14,8 +14,8 @@ const editPostHandler = async (event) => {
         });
 
         if (response.ok) {
-            // document.location.replace('/dashboard');
-            document.location.replace(`/tech/${edit_id}`);
+            document.location.replace('/dashboard');
+            // document.location.replace(`/tech/${edit_id}`);
             // document.location.replace(`/dashboard`);
         } else {
             alert('Failed to edit new post.');
@@ -25,4 +25,4 @@ const editPostHandler = async (event) => {
 
 document
     .querySelector('.edit_tech')
-    .addEventListener('click', editPostHandler);
+    .addEventListener('submit', editPostHandler);
