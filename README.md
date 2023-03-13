@@ -22,7 +22,7 @@
 ###### MYSQL, NODE.JS, JAVASCRIPT
 
 ### Usage
-#### Check the deployed aplication at: https://secret-thicket-88512.herokuapp.com/dashboard 
+#### Check the deployed aplication at: https://dashboard.heroku.com/apps/mdv-controller
 
 ## ⚖️ License
 #### N/A
