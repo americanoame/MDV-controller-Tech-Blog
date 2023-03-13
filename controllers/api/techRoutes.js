@@ -29,8 +29,6 @@ router.post('/comment', withAuth, async (req, res) => {
   }
 });
 
-// tittle content where
-
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const techData = await Tech.update(

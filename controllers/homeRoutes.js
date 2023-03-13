@@ -92,7 +92,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 // it takes the user to the page when they login
-
 router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
   try {
@@ -145,15 +144,8 @@ router.get('/logout', (req, res) => {
   }
 });
 
-
 router.get('/new', (req, res) => {
-
-
   res.render('new-post');
 });
-
-
-
-
 
 module.exports = router;

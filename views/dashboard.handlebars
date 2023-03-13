@@ -1,6 +1,6 @@
 <div class='container p-3 d-grid mt-2 tech-list'>
   <div class='d-flex justify-content-center'>
-    <h2 class="blogs-created-by">Blogs Created by:{{name}}</h2>
+    <h2 class="blogs-created-by">AllABout/Tech</h2>
   </div>
   {{#if techs.length}}
   <h3>New Blogs:</h3>
@@ -14,14 +14,12 @@
         <div class='d-flex justify-content-end align-items-center col-12 col-md-5'>
           <p class='m-2'>
             {{format_date tech.date_created}}
-
             <button class='btn btn btn-danger' data-id='{{tech.id}}' data-function='edit'>EDIT</button>
             <button class='btn btn btn-danger' data-id='{{tech.id}}' data-function='delete'>DELETE</button>
           </p>
         </div>
       </div>
     </div>
-
   </div>
   {{/each}}
   {{/if}}

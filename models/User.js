@@ -37,6 +37,9 @@ User.init(
     },
   },
   {
+
+    // These hooks will be executed automatically by a framework or library whenever a new user is created or updated in the system.
+    // The purpose of these hooks is to hash the user's password before it is stored in the database.
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);

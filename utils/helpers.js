@@ -1,7 +1,3 @@
-
-// i need to change this code
-
-
 module.exports = {
   format_time: (date) => {
     return date.toLocaleTimeString();
