@@ -1,10 +1,11 @@
-const addNewHandler = async (event) => {
+const CommentHandler = async (event) => {
     event.preventDefault();
 
-    const email = document.querySelector('#addComment').value.trim();
-    console.log(comment);
+    const comment = document.querySelector('#addComment').value.trim();
+    console.log('comment', comment);
 
-    const tech_id = window.location.pathname.split('/').slice(-1)[0];
+    const tech_id = window.location.pathname.split('/').reverse()[0];
+
     try {
         if (comment) {
             const response = await fetch('/api/users/login', {
@@ -29,4 +30,4 @@ const addNewHandler = async (event) => {
 
 document
     .querySelector('#addComment')
-    .addEventListener('click', addNewHandler);
+    .addEventListener('submit', CommentHandler);
