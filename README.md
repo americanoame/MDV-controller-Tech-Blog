@@ -22,8 +22,7 @@
 ###### MYSQL, NODE.JS, JAVASCRIPT
 
 ### Usage
-#### Check the deployed aplication at: https://dashboard.heroku.com/apps/mdv-controller
-
+#### Check the deployed application at: https://mdv-controller.herokuapp.com/
 ## ⚖️ License
 #### N/A
 
