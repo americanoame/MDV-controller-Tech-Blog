@@ -111,11 +111,6 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
 });
 
-router.get('/tech', withAuth, async (req, res) => {
-  res.render('tech', {
-    loggedIn: req.session.logged_in
-  });
-});
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {

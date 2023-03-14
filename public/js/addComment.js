@@ -2,10 +2,10 @@ const CommentHandler = async (event) => {
     event.preventDefault();
 
     const comment = document.querySelector('#addComment').value.trim();
-    console.log('comment', comment);
+    console.log('comment:', comment);
 
     const tech_id = window.location.pathname.split('/').reverse()[0];
-
+    
     try {
         if (comment) {
             const response = await fetch('/api/users/login', {
