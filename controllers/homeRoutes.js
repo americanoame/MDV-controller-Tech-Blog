@@ -39,7 +39,7 @@ router.get('/tech/:id', async (req, res) => {
           attributes: ['id', 'content', 'date_created', 'tech_id', 'user_id'],
           include: {
             model: User,
-            attributes:['name']
+            attributes: ['name']
           }
         },
         {
@@ -48,7 +48,7 @@ router.get('/tech/:id', async (req, res) => {
         },
       ],
       order: [
-        [{model: Comment}, 'date_created', 'DESC'],
+        [{ model: Comment }, 'date_created', 'DESC'],
       ]
     });
 
@@ -69,20 +69,20 @@ router.get('/tech/:id', async (req, res) => {
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const dbTechData = await Tech.findAll({
-      
+
       where: {
         user_id: req.session.user_id
       }
     });
     console.log(dbTechData)
 
-    
+
     const techs = dbTechData.map((tech) => tech.get({ plain: true }));
     console.log(techs);
     res.render('dashboard', {
       techs,
       loggedIn: req.session.logged_in,
-  
+
     });
   } catch (err) {
     console.log(err);
@@ -113,7 +113,7 @@ router.get('/tech/edit/:id', withAuth, async (req, res) => {
 
 router.get('/tech', withAuth, async (req, res) => {
   res.render('tech', {
-    logged_in: req.session.logged_in
+    loggedIn: req.session.logged_in
   });
 });
 
@@ -130,9 +130,9 @@ router.get('/signup', (req, res) => {
     res.redirect('/dashboard');
     return;
   }
-
   res.render('signup');
 });
+
 router.get('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -144,8 +144,11 @@ router.get('/logout', (req, res) => {
   }
 });
 
-router.get('/new', (req, res) => {
-  res.render('new-post');
+router.get('/new', withAuth, async (req, res) => {
+  if (req.session.logged_in) {
+    res.render('new-post');
+    return;
+  }
 });
 
 module.exports = router;
