@@ -75,6 +75,17 @@ h4 {
 }
 
 
+/* #try {
+  margin-top: -120px;
+} */
+
+@media screen and (max-width: 768px) {
+  #media {
+    margin-top: -150px;
+  }
+}
+
+
 
 
 
