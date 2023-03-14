@@ -145,10 +145,10 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/new', withAuth, async (req, res) => {
-  if (req.session.logged_in) {
-    res.render('new-post');
-    return;
-  }
+     
+    res.render('new-post', {  loggedIn: req.session.logged_in})
+    
+  
 });
 
 module.exports = router;
